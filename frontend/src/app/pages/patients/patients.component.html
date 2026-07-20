@@ -54,48 +54,48 @@
     <div *ngIf="!loading && filtered.length === 0" class="empty">No patients found.</div>
 
     <!-- ── Kendo Grid ─────────────────────────────────────────────── -->
-    <kendo-grid
-      *ngIf="filtered.length > 0"
-      [data]="gridView"
-      [pageSize]="pageSize"
-      [skip]="skip"
-      [pageable]="pageableSettings"
-      [sortable]="true"
-      [sort]="sort"
-      [scrollable]="'none'"
-      (pageChange)="onPageChange($event)"
-      (sortChange)="onSortChange($event)"
-      [resizable]="true"
-      class="hospital-grid"
-      id="patients-grid"
-    >
-      <kendo-grid-column field="id" title="#" [width]="70">
+    <kendo-grid *ngIf="filtered.length > 0"
+                [data]="gridView"
+                [pageSize]="pageSize"
+                [skip]="skip"
+                [pageable]="pageableSettings"
+                [sortable]="true"
+                [sort]="sort"
+                [scrollable]="'none'"
+                (pageChange)="onPageChange($event)"
+                (sortChange)="onSortChange($event)"
+                [resizable]="true"
+                class="hospital-grid"
+                id="patients-grid">
+      <kendo-grid-column field="id" title="#" [width]="50">
         <ng-template kendoGridCellTemplate let-dataItem>
           <span class="id-cell">{{ dataItem.id }}</span>
         </ng-template>
       </kendo-grid-column>
 
-      <kendo-grid-column field="fullName" title="Full Name" [width]="180">
-        <ng-template kendoGridCellTemplate let-dataItem>
-          <strong>{{ dataItem.fullName }}</strong>
-        </ng-template>
-      </kendo-grid-column>
+   
+  <kendo-grid-column field="fullName" title="Full Name" [width]="140">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <strong>{{ dataItem.fullName }}</strong>
+    </ng-template>
+  </kendo-grid-column>
+   
 
-      <kendo-grid-column field="age" title="Age" [width]="70"></kendo-grid-column>
+      <kendo-grid-column field="age" title="Age" [width]="60"></kendo-grid-column>
 
-      <kendo-grid-column field="gender" title="Gender" [width]="90"></kendo-grid-column>
+      <kendo-grid-column field="gender" title="Gender" [width]="80"></kendo-grid-column>
 
-      <kendo-grid-column field="disease" title="Disease" [width]="160"></kendo-grid-column>
+      <kendo-grid-column field="disease" title="Disease" [width]="130"></kendo-grid-column>
 
-      <kendo-grid-column field="phoneNumber" title="Phone" [width]="130"></kendo-grid-column>
+      <kendo-grid-column field="phoneNumber" title="Phone" [width]="110"></kendo-grid-column>
 
-      <kendo-grid-column field="admissionDate" title="Admitted" [width]="130">
+      <kendo-grid-column field="admissionDate" title="Admitted" [width]="110">
         <ng-template kendoGridCellTemplate let-dataItem>
           <span class="date-cell">{{ dataItem.admissionDate | date:'dd MMM yyyy' }}</span>
         </ng-template>
       </kendo-grid-column>
 
-      <kendo-grid-column field="isActive" title="Status" [width]="110">
+      <kendo-grid-column field="isActive" title="Status" [width]="90">
         <ng-template kendoGridCellTemplate let-dataItem>
           <span class="status-text" [ngClass]="dataItem.isActive ? 'status-active' : 'status-inactive'">
             {{ dataItem.isActive ? 'Active' : 'Inactive' }}
@@ -103,13 +103,13 @@
         </ng-template>
       </kendo-grid-column>
 
-      <kendo-grid-column field="totalAppointments" title="Appts" [width]="80">
+      <kendo-grid-column field="totalAppointments" title="Appts" [width]="70">
         <ng-template kendoGridCellTemplate let-dataItem>
           <span class="count-cell">{{ dataItem.totalAppointments }}</span>
         </ng-template>
       </kendo-grid-column>
 
-      <kendo-grid-column title="Actions" [width]="160" [sortable]="false">
+      <kendo-grid-column title="Actions" [width]="130" [sortable]="false">
         <ng-template kendoGridCellTemplate let-dataItem>
           <div class="btn-row">
             <button class="btn secondary sm" (click)="openEdit(dataItem)">Edit</button>

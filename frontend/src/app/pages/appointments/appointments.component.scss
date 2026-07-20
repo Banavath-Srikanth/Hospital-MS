@@ -200,7 +200,7 @@
 /* ── Kendo Grid Overrides ──────────────────────────────────────── */
 .hospital-grid {
   border-radius: 0 0 10px 10px;
-  overflow: hidden;
+  overflow-x: auto;
   font-family: 'Inter', sans-serif;
   font-size: 13px;
 }

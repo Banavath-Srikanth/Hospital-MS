@@ -72,39 +72,39 @@
       class="hospital-grid"
       id="appointments-grid"
     >
-      <kendo-grid-column field="id" title="#" [width]="70">
+      <kendo-grid-column field="id" title="#" [width]="50">
         <ng-template kendoGridCellTemplate let-dataItem>
           <span class="id-cell">{{ dataItem.id }}</span>
         </ng-template>
       </kendo-grid-column>
 
-      <kendo-grid-column field="patientName" title="Patient" [width]="180">
+      <kendo-grid-column field="patientName" title="Patient" [width]="140">
         <ng-template kendoGridCellTemplate let-dataItem>
           <strong>{{ dataItem.patientName }}</strong>
         </ng-template>
       </kendo-grid-column>
 
-      <kendo-grid-column field="doctorName" title="Doctor" [width]="180">
+      <kendo-grid-column field="doctorName" title="Doctor" [width]="140">
         <ng-template kendoGridCellTemplate let-dataItem>
           Dr. {{ dataItem.doctorName }}
         </ng-template>
       </kendo-grid-column>
 
-      <kendo-grid-column field="doctorSpecialization" title="Specialization" [width]="160"></kendo-grid-column>
+      <kendo-grid-column field="doctorSpecialization" title="Specialization" [width]="130"></kendo-grid-column>
 
-      <kendo-grid-column field="appointmentDate" title="Date & Time" [width]="170">
+      <kendo-grid-column field="appointmentDate" title="Date & Time" [width]="140">
         <ng-template kendoGridCellTemplate let-dataItem>
           <span class="datetime-cell">{{ dataItem.appointmentDate | date:'dd MMM yyyy, HH:mm' }}</span>
         </ng-template>
       </kendo-grid-column>
 
-      <kendo-grid-column field="status" title="Status" [width]="120">
+      <kendo-grid-column field="status" title="Status" [width]="100">
         <ng-template kendoGridCellTemplate let-dataItem>
           <span class="status-text" [ngClass]="statusClass(dataItem.status)">{{ dataItem.status }}</span>
         </ng-template>
       </kendo-grid-column>
 
-      <kendo-grid-column title="Actions" [width]="150" [sortable]="false">
+      <kendo-grid-column title="Actions" [width]="130" [sortable]="false">
         <ng-template kendoGridCellTemplate let-dataItem>
           <div class="btn-row">
             <button class="btn secondary sm" (click)="openEdit(dataItem)">Edit</button>
