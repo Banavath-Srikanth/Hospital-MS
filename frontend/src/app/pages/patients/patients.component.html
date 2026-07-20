@@ -1,0 +1,173 @@
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1>Patients</h1>
+      <p>{{ patients.length }} record(s) from database</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn excel" (click)="exportToExcel()" id="btn-export-patients" [disabled]="filtered.length === 0">
+        📊 Excel
+      </button>
+      <button class="btn pdf" (click)="exportToPdf()" id="btn-pdf-patients" [disabled]="filtered.length === 0">
+        📄 PDF
+      </button>
+      <button class="btn print" (click)="printData()" id="btn-print-patients" [disabled]="filtered.length === 0">
+        🖨 Print
+      </button>
+      <button class="btn primary" (click)="openAdd()" id="btn-add-patient">+ Add Patient</button>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="alert info">Loading patients…</div>
+  <div *ngIf="error"   class="alert err">{{ error }}</div>
+  <div *ngIf="success" class="alert ok">{{ success }}</div>
+
+  <div class="card">
+    <!-- ── Toolbar ──────────────────────────────────────────────────── -->
+    <div class="table-toolbar">
+      <div class="toolbar-left">
+        <span class="record-count">{{ filtered.length }} patient(s)</span>
+        <div class="filter-btn-group">
+          <button class="filter-btn" [class.active]="statusFilter === 'All'"      (click)="setStatusFilter('All')">All</button>
+          <button class="filter-btn" [class.active]="statusFilter === 'Active'"   (click)="setStatusFilter('Active')">Active</button>
+          <button class="filter-btn" [class.active]="statusFilter === 'Inactive'" (click)="setStatusFilter('Inactive')">Inactive</button>
+        </div>
+      </div>
+      <button class="btn secondary sm" (click)="clearFilters()" id="btn-clear-patient-filters">Clear Filters</button>
+    </div>
+
+    <!-- ── Global search bar ─────────────────────────────────────────── -->
+    <div class="global-search-wrap">
+      <span class="search-icon"></span>
+      <input
+        class="global-search"
+        type="text"
+        placeholder="Search by name, gender, disease, phone…"
+        [(ngModel)]="globalSearch"
+        (ngModelChange)="applyFilter()"
+        id="pf-global"
+        autocomplete="off"
+      />
+      <button *ngIf="globalSearch" class="search-clear" (click)="globalSearch=''; applyFilter()" title="Clear">x</button>
+    </div>
+
+    <div *ngIf="!loading && filtered.length === 0" class="empty">No patients found.</div>
+
+    <!-- ── Kendo Grid ─────────────────────────────────────────────── -->
+    <kendo-grid
+      *ngIf="filtered.length > 0"
+      [data]="gridView"
+      [pageSize]="pageSize"
+      [skip]="skip"
+      [pageable]="pageableSettings"
+      [sortable]="true"
+      [sort]="sort"
+      [scrollable]="'none'"
+      (pageChange)="onPageChange($event)"
+      (sortChange)="onSortChange($event)"
+      [resizable]="true"
+      class="hospital-grid"
+      id="patients-grid"
+    >
+      <kendo-grid-column field="id" title="#" [width]="70">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <span class="id-cell">{{ dataItem.id }}</span>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="fullName" title="Full Name" [width]="180">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <strong>{{ dataItem.fullName }}</strong>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="age" title="Age" [width]="70"></kendo-grid-column>
+
+      <kendo-grid-column field="gender" title="Gender" [width]="90"></kendo-grid-column>
+
+      <kendo-grid-column field="disease" title="Disease" [width]="160"></kendo-grid-column>
+
+      <kendo-grid-column field="phoneNumber" title="Phone" [width]="130"></kendo-grid-column>
+
+      <kendo-grid-column field="admissionDate" title="Admitted" [width]="130">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <span class="date-cell">{{ dataItem.admissionDate | date:'dd MMM yyyy' }}</span>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="isActive" title="Status" [width]="110">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <span class="status-text" [ngClass]="dataItem.isActive ? 'status-active' : 'status-inactive'">
+            {{ dataItem.isActive ? 'Active' : 'Inactive' }}
+          </span>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="totalAppointments" title="Appts" [width]="80">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <span class="count-cell">{{ dataItem.totalAppointments }}</span>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column title="Actions" [width]="160" [sortable]="false">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="btn-row">
+            <button class="btn secondary sm" (click)="openEdit(dataItem)">Edit</button>
+            <button class="btn danger sm" (click)="delete(dataItem.id)" *ngIf="dataItem.isActive">Deactivate</button>
+          </div>
+        </ng-template>
+      </kendo-grid-column>
+    </kendo-grid>
+  </div>
+</div>
+
+<!-- Add / Edit Modal -->
+<div class="overlay" *ngIf="showModal" (click)="showModal=false">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <div class="modal-head">
+      <h2>{{ editMode ? 'Edit Patient' : 'Register Patient' }}</h2>
+      <button (click)="showModal=false">×</button>
+    </div>
+    <div class="modal-body">
+      <div *ngIf="error" class="alert err" style="margin-bottom:8px">{{ error }}</div>
+      <div class="form-grid">
+        <div class="field full">
+          <label>Full Name</label>
+          <input type="text" [(ngModel)]="form.fullName" placeholder="e.g. Alice Johnson" id="p-fullname" />
+        </div>
+        <div class="field">
+          <label>Age</label>
+          <input type="number" [(ngModel)]="form.age" min="0" max="130" placeholder="Age" id="p-age" />
+        </div>
+        <div class="field">
+          <label>Gender</label>
+          <select [(ngModel)]="form.gender" id="p-gender">
+            <option>Male</option><option>Female</option><option>Other</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label>Disease / Condition</label>
+          <input type="text" [(ngModel)]="form.disease" placeholder="e.g. Hypertension" id="p-disease" />
+        </div>
+        <div class="field full">
+          <label>Phone Number</label>
+          <input type="tel" [(ngModel)]="form.phoneNumber" placeholder="e.g. 9876543210"
+                 id="p-phone" maxlength="10" pattern="[6-9][0-9]{9}"
+                 (input)="phoneError = ''" />
+          <span *ngIf="phoneError" class="field-error">{{ phoneError }}</span>
+        </div>
+        <div class="field" *ngIf="editMode">
+          <label>Active</label>
+          <select [(ngModel)]="form.isActive" id="p-active">
+            <option [ngValue]="true">Yes</option>
+            <option [ngValue]="false">No</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn secondary" (click)="showModal=false">Cancel</button>
+      <button class="btn primary" (click)="save()" id="btn-save-patient">{{ editMode ? 'Update' : 'Register' }}</button>
+    </div>
+  </div>
+</div>

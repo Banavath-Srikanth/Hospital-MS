@@ -1,0 +1,171 @@
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1>Appointments</h1>
+      <p>{{ appointments.length }} record(s) from database</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn pdf" (click)="exportToPdf()" id="btn-pdf-appt" [disabled]="filtered.length === 0">
+        📄 PDF
+      </button>
+      <button class="btn print" (click)="printData()" id="btn-print-appt" [disabled]="filtered.length === 0">
+        🖨 Print
+      </button>
+      <button class="btn primary" (click)="openAdd()" id="btn-add-appt">+ Schedule Appointment</button>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="alert info">Loading appointments…</div>
+  <div *ngIf="error"   class="alert err">{{ error }}</div>
+  <div *ngIf="success" class="alert ok">{{ success }}</div>
+
+  <div class="card">
+    <!-- ── Toolbar row 1: count + status filters + search ── -->
+    <div class="table-toolbar">
+      <div class="toolbar-left">
+        <span class="record-count">{{ filtered.length }} / {{ appointments.length }} appointment(s)</span>
+        <div class="filter-btn-group">
+          <button class="filter-btn" [class.active]="statusFilter === 'All'"         (click)="setStatusFilter('All')">All</button>
+          <button class="filter-btn" [class.active]="statusFilter === 'Scheduled'"    (click)="setStatusFilter('Scheduled')">Scheduled</button>
+          <button class="filter-btn" [class.active]="statusFilter === 'Cancelled'"    (click)="setStatusFilter('Cancelled')">Cancelled</button>
+          <button class="filter-btn" [class.active]="statusFilter === 'Completed'"    (click)="setStatusFilter('Completed')">Completed</button>
+        </div>
+      </div>
+      <input class="search-input" type="text" placeholder="Search by patient, doctor, status…"
+             [(ngModel)]="searchTerm" (ngModelChange)="applyFilter()" id="appt-search" />
+    </div>
+
+    <!-- ── Toolbar row 2: date range filter ── -->
+    <div class="date-range-bar">
+      <span class="date-range-label">📅 Date Range</span>
+      <div class="date-range-inputs">
+        <div class="date-field">
+          <label for="appt-date-from">From</label>
+          <input type="date" id="appt-date-from" [(ngModel)]="dateFrom" (ngModelChange)="applyFilter()" />
+        </div>
+        <span class="date-range-sep">→</span>
+        <div class="date-field">
+          <label for="appt-date-to">To</label>
+          <input type="date" id="appt-date-to" [(ngModel)]="dateTo" (ngModelChange)="applyFilter()" />
+        </div>
+      </div>
+      <button class="btn-clear-filters" *ngIf="hasActiveFilters" (click)="clearFilters()" title="Clear all filters">
+        ✕ Clear Filters
+      </button>
+    </div>
+
+    <div *ngIf="!loading && filtered.length === 0" class="empty">No appointments found.</div>
+
+    <!-- ── Kendo Grid ─────────────────────────────────────────────── -->
+    <kendo-grid
+      *ngIf="filtered.length > 0"
+      [data]="gridView"
+      [pageSize]="pageSize"
+      [skip]="skip"
+      [pageable]="pageableSettings"
+      [sortable]="true"
+      [sort]="sort"
+      [scrollable]="'none'"
+      (pageChange)="onPageChange($event)"
+      (sortChange)="onSortChange($event)"
+      [resizable]="true"
+      class="hospital-grid"
+      id="appointments-grid"
+    >
+      <kendo-grid-column field="id" title="#" [width]="70">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <span class="id-cell">{{ dataItem.id }}</span>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="patientName" title="Patient" [width]="180">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <strong>{{ dataItem.patientName }}</strong>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="doctorName" title="Doctor" [width]="180">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          Dr. {{ dataItem.doctorName }}
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="doctorSpecialization" title="Specialization" [width]="160"></kendo-grid-column>
+
+      <kendo-grid-column field="appointmentDate" title="Date & Time" [width]="170">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <span class="datetime-cell">{{ dataItem.appointmentDate | date:'dd MMM yyyy, HH:mm' }}</span>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="status" title="Status" [width]="120">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <span class="status-text" [ngClass]="statusClass(dataItem.status)">{{ dataItem.status }}</span>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column title="Actions" [width]="150" [sortable]="false">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="btn-row">
+            <button class="btn secondary sm" (click)="openEdit(dataItem)">Edit</button>
+            <button class="btn danger sm"    (click)="delete(dataItem.id)">Cancel</button>
+          </div>
+        </ng-template>
+      </kendo-grid-column>
+    </kendo-grid>
+  </div>
+</div>
+
+<!-- Schedule / Edit Modal -->
+<div class="overlay" *ngIf="showModal" (click)="showModal=false">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <div class="modal-head">
+      <h2>{{ editMode ? 'Edit Appointment' : 'Schedule Appointment' }}</h2>
+      <button (click)="showModal=false">×</button>
+    </div>
+    <div class="modal-body">
+      <div *ngIf="error" class="alert err" style="margin-bottom:8px">{{ error }}</div>
+      <div class="form-grid">
+
+        <!-- Patient selector — only shown when creating -->
+        <div class="field full" *ngIf="!editMode">
+          <label>Patient</label>
+          <select [(ngModel)]="form.patientId" id="a-patient">
+            <option [value]="0" disabled>Select patient…</option>
+            <option *ngFor="let p of patients" [value]="p.id">{{ p.fullName }}</option>
+          </select>
+        </div>
+
+        <!-- Doctor selector — only shown when creating -->
+        <div class="field full" *ngIf="!editMode">
+          <label>Doctor</label>
+          <select [(ngModel)]="form.doctorId" id="a-doctor">
+            <option [value]="0" disabled>Select doctor…</option>
+            <option *ngFor="let d of doctors" [value]="d.id">Dr. {{ d.fullName }} — {{ d.specialization }}</option>
+          </select>
+        </div>
+
+        <div class="field full">
+          <label>Date &amp; Time</label>
+          <input type="datetime-local" [(ngModel)]="form.appointmentDate"
+                 [min]="minDateTime" step="60" id="a-date" />
+          <small style="color:#888;font-size:11px">Must be a future date and time</small>
+        </div>
+
+        <div class="field" *ngIf="editMode">
+          <label>Status</label>
+          <select [(ngModel)]="form.status" id="a-status">
+            <option>Scheduled</option>
+            <option>Completed</option>
+            <option>Cancelled</option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn secondary" (click)="showModal=false">Cancel</button>
+      <button class="btn primary" (click)="save()" id="btn-save-appt">{{ editMode ? 'Update' : 'Schedule' }}</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,110 @@
+/* ── Doctors Page — Kendo Grid ──────────────────────────────── */
+
+/* Status filter button group */
+.filter-btn-group {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+
+  .filter-btn {
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1.5px solid #cbd5e1;
+    background: #fff;
+    color: #475569;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+
+    &:hover:not(.active) {
+      border-color: #94a3b8;
+      background: #f8fafc;
+    }
+
+    &.active {
+      background: #0891b2;
+      border-color: #0891b2;
+      color: #fff;
+    }
+  }
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Widen the page so the 10-column grid fits */
+:host {
+  .page { max-width: 1400px; }
+}
+
+/* Page-level entry animation */
+.page {
+  animation: fadeInUp 0.3s ease both;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Doctor name */
+strong {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+/* Badge ID — plain monospace text */
+.badge-plain {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  white-space: nowrap;
+}
+
+/* ── Availability — pill badges ───────────────────────────────── */
+.status-text {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  border: 1px solid transparent;
+
+  &.status-available {
+    background: #d1fae5;
+    color: #059669;
+    border-color: #a7f3d0;
+  }
+
+  &.status-unavailable {
+    background: #f1f5f9;
+    color: #94a3b8;
+    border-color: #cbd5e1;
+  }
+}
+
+/* Appointment count */
+.appt-count {
+  text-align: center;
+  font-weight: 700;
+  color: #2c3e6b;
+  display: block;
+}
+
+/* ── Kendo Grid Overrides ──────────────────────────────────────── */
+.hospital-grid {
+  border-radius: 0 0 10px 10px;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+}

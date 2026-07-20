@@ -1,0 +1,182 @@
+﻿using HospitalApp.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace HospitalApp.Data
+{
+    /// <summary>
+    /// EF Core DbContext — acts as the bridge between C# models and SQL Server database.
+    /// Registers all entity sets and configures relationships via Fluent API.
+    /// </summary>
+    public class HospitalDbContext : DbContext
+    {
+        // ─── DbSets (maps to SQL tables) ──────────────────────────────────
+
+        public DbSet<Patient> Patients { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
+
+        // ─── Constructor ──────────────────────────────────────────────────
+
+        public HospitalDbContext(DbContextOptions<HospitalDbContext> options) : base(options) { }
+
+        // ─── Model Configuration (Fluent API) ─────────────────────────────
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // ── Patient configuration ──────────────────────────────────────
+            modelBuilder.Entity<Patient>(entity =>
+            {
+                entity.ToTable("Patients");
+                entity.HasKey(p => p.Id);
+                entity.Property(p => p.FullName).IsRequired().HasMaxLength(150);
+                entity.Property(p => p.Gender).IsRequired().HasMaxLength(10);
+                entity.Property(p => p.Disease).IsRequired().HasMaxLength(200);
+                entity.Property(p => p.PhoneNumber).IsRequired().HasMaxLength(15);
+                entity.Property(p => p.BloodGroup).HasMaxLength(5);
+                entity.Property(p => p.Address).HasMaxLength(500);
+            });
+
+            // ── Doctor configuration ───────────────────────────────────────
+            modelBuilder.Entity<Doctor>(entity =>
+            {
+                entity.ToTable("Doctors");
+                entity.HasKey(d => d.Id);
+                entity.Property(d => d.FullName).IsRequired().HasMaxLength(150);
+                entity.Property(d => d.Specialization).IsRequired().HasMaxLength(100);
+                entity.Property(d => d.PhoneNumber).IsRequired().HasMaxLength(15);
+                entity.Property(d => d.Email).IsRequired().HasMaxLength(200);
+                entity.HasIndex(d => d.Email).IsUnique();
+            });
+
+            // ── Appointment configuration ──────────────────────────────────
+            modelBuilder.Entity<Appointment>(entity =>
+            {
+                entity.ToTable("Appointments");
+                entity.HasKey(a => a.Id);
+                entity.Property(a => a.Status).IsRequired().HasMaxLength(20);
+                entity.Property(a => a.Notes).HasMaxLength(1000);
+
+                // Relationship: Appointment → Patient (many-to-one)
+                entity.HasOne(a => a.Patient)
+                      .WithMany(p => p.Appointments)
+                      .HasForeignKey(a => a.PatientId)
+                      .OnDelete(DeleteBehavior.Restrict);
+
+                // Relationship: Appointment → Doctor (many-to-one)
+                entity.HasOne(a => a.Doctor)
+                      .WithMany(d => d.Appointments)
+                      .HasForeignKey(a => a.DoctorId)
+                      .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            // ── Seed Data ──────────────────────────────────────────────────
+            SeedData(modelBuilder);
+        }
+
+        private static void SeedData(ModelBuilder modelBuilder)
+        {
+            // Seed Doctors
+            modelBuilder.Entity<Doctor>().HasData(
+                new Doctor
+                {
+                    Id = 1,
+                    FullName = "Rajesh Kumar",
+                    Specialization = "Cardiology",
+                    PhoneNumber = "9876543210",
+                    Email = "rajesh.kumar@hospital.com",
+                    ExperienceYears = 15,
+                    IsAvailable = true
+                },
+                new Doctor
+                {
+                    Id = 2,
+                    FullName = "Priya Sharma",
+                    Specialization = "Neurology",
+                    PhoneNumber = "9876543211",
+                    Email = "priya.sharma@hospital.com",
+                    ExperienceYears = 10,
+                    IsAvailable = true
+                },
+                new Doctor
+                {
+                    Id = 3,
+                    FullName = "Amit Verma",
+                    Specialization = "Orthopedics",
+                    PhoneNumber = "9876543212",
+                    Email = "amit.verma@hospital.com",
+                    ExperienceYears = 8,
+                    IsAvailable = true
+                }
+            );
+
+            // Seed Patients
+            modelBuilder.Entity<Patient>().HasData(
+                new Patient
+                {
+                    Id = 1,
+                    FullName = "Suresh Reddy",
+                    Age = 45,
+                    Gender = "Male",
+                    Disease = "Hypertension",
+                    BloodGroup = "B+",
+                    PhoneNumber = "9000000001",
+                    Address = "Hyderabad, Telangana",
+                    AdmissionDate = new DateTime(2025, 1, 10, 0, 0, 0, DateTimeKind.Utc),
+                    IsActive = true
+                },
+                new Patient
+                {
+                    Id = 2,
+                    FullName = "Anitha Rao",
+                    Age = 32,
+                    Gender = "Female",
+                    Disease = "Diabetes",
+                    BloodGroup = "O+",
+                    PhoneNumber = "9000000002",
+                    Address = "Vijayawada, AP",
+                    AdmissionDate = new DateTime(2025, 2, 15, 0, 0, 0, DateTimeKind.Utc),
+                    IsActive = true
+                },
+                new Patient
+                {
+                    Id = 3,
+                    FullName = "Kiran Babu",
+                    Age = 60,
+                    Gender = "Male",
+                    Disease = "Arthritis",
+                    BloodGroup = "A+",
+                    PhoneNumber = "9000000003",
+                    Address = "Warangal, Telangana",
+                    AdmissionDate = new DateTime(2025, 3, 5, 0, 0, 0, DateTimeKind.Utc),
+                    IsActive = true
+                }
+            );
+
+            // Seed Appointments
+            modelBuilder.Entity<Appointment>().HasData(
+                new Appointment
+                {
+                    Id = 1,
+                    PatientId = 1,
+                    DoctorId = 1,
+                    AppointmentDate = new DateTime(2025, 4, 1, 10, 0, 0, DateTimeKind.Utc),
+                    Status = AppointmentStatus.Completed,
+                    Notes = "Follow-up for blood pressure management.",
+                    CreatedAt = new DateTime(2025, 3, 25, 0, 0, 0, DateTimeKind.Utc)
+                },
+                new Appointment
+                {
+                    Id = 2,
+                    PatientId = 2,
+                    DoctorId = 2,
+                    AppointmentDate = new DateTime(2025, 4, 10, 11, 0, 0, DateTimeKind.Utc),
+                    Status = AppointmentStatus.Scheduled,
+                    Notes = "Routine diabetes check.",
+                    CreatedAt = new DateTime(2025, 4, 5, 0, 0, 0, DateTimeKind.Utc)
+                }
+            );
+        }
+    }
+}

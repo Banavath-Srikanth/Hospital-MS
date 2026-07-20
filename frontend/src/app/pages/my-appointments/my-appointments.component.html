@@ -1,0 +1,85 @@
+<div class="myappts-page">
+
+  <!-- Header -->
+  <div class="page-header">
+    <div>
+      <h1>My Appointments</h1>
+      <p>Track and manage all your hospital appointments</p>
+    </div>
+    <a routerLink="/book-appointment" id="btn-book-new" class="book-btn">+ Book New</a>
+  </div>
+
+  <!-- Messages -->
+  @if (successMsg()) { <div class="alert success">{{ successMsg() }}</div> }
+  @if (errorMsg())   { <div class="alert error">{{ errorMsg() }}</div> }
+
+  <!-- Filter Tabs -->
+  <div class="filter-bar">
+    <button class="filter-tab" [class.active]="filterStatus() === 'all'" (click)="setFilter('all')" id="filter-all">
+      All <span class="tab-count">{{ appointments().length }}</span>
+    </button>
+    <button class="filter-tab scheduled" [class.active]="filterStatus() === 'Scheduled'" (click)="setFilter('Scheduled')" id="filter-scheduled">
+      Scheduled <span class="tab-count">{{ countByStatus('Scheduled') }}</span>
+    </button>
+    <button class="filter-tab completed" [class.active]="filterStatus() === 'Completed'" (click)="setFilter('Completed')" id="filter-completed">
+      Completed <span class="tab-count">{{ countByStatus('Completed') }}</span>
+    </button>
+    <button class="filter-tab cancelled" [class.active]="filterStatus() === 'Cancelled'" (click)="setFilter('Cancelled')" id="filter-cancelled">
+      Cancelled <span class="tab-count">{{ countByStatus('Cancelled') }}</span>
+    </button>
+  </div>
+
+  <!-- Loading -->
+  @if (loading()) {
+    <div class="loading-state">
+      <div class="loader"></div>
+      <p>Loading your appointments…</p>
+    </div>
+  } @else if (filtered.length === 0) {
+    <div class="empty-state">
+      <span class="empty-icon"></span>
+      <h3>No appointments found</h3>
+      <p>{{ filterStatus() !== 'all' ? 'No ' + filterStatus().toLowerCase() + ' appointments.' : 'You have no appointments yet.' }}</p>
+      <a routerLink="/book-appointment" class="book-link">Book an appointment →</a>
+    </div>
+  } @else {
+    <div class="appts-list">
+      @for (appt of filtered; track appt.id) {
+        <div class="appt-card" [class.past]="!isUpcoming(appt.appointmentDate)">
+
+
+          <!-- Content -->
+          <div class="appt-content">
+            <div class="appt-main">
+              <div class="appt-header-row">
+                <div class="doc-details">
+                  <div class="doc-name">Dr. {{ appt.doctorName }}</div>
+                  <div class="doc-spec">{{ appt.doctorSpecialization }}</div>
+                </div>
+                <span class="status-pill" [class]="getStatusClass(appt.status)">{{ appt.status }}</span>
+              </div>
+
+              <div class="appt-datetime">
+                <span class="dt-item">{{ formatDate(appt.appointmentDate) }}</span>
+                <span class="dt-sep">·</span>
+                <span class="dt-item">{{ formatTime(appt.appointmentDate) }}</span>
+              </div>
+            </div>
+
+            @if (appt.status === 'Scheduled' && isUpcoming(appt.appointmentDate)) {
+              <button
+                class="cancel-btn"
+                [id]="'btn-cancel-' + appt.id"
+                [disabled]="cancellingId() === appt.id"
+                (click)="cancelAppointment(appt.id)">
+                @if (cancellingId() === appt.id) { <span class="spinner-sm"></span> } Cancel
+              </button>
+            }
+          </div>
+
+        </div>
+      }
+    </div>
+  }
+
+</div>

@@ -1,0 +1,87 @@
+<div class="page">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div>
+      <h1>My Dashboard</h1>
+      <p>Welcome back, {{ user()?.username }}. Here's your appointment summary.</p>
+    </div>
+  </div>
+
+  <!-- Stat Cards -->
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="stat-value">{{ upcoming().length }}</div>
+      <div class="stat-label">Upcoming</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-value">{{ past().length }}</div>
+      <div class="stat-label">Past / Cancelled</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-value">{{ upcoming().length + past().length }}</div>
+      <div class="stat-label">Total Visits</div>
+    </div>
+  </div>
+
+  <!-- Quick Links -->
+  <div class="quick-links">
+    <button class="quick-link-card" id="btn-book-appt" (click)="navigateTo('/book-appointment')">
+      <strong>Book Appointment <em class="quick-link-arrow">→</em></strong>
+      <p>Schedule a visit with a doctor</p>
+    </button>
+    <button class="quick-link-card" id="btn-my-appts" (click)="navigateTo('/my-appointments')">
+      <strong>My Appointments <em class="quick-link-arrow">→</em></strong>
+      <p>View or cancel your appointments</p>
+    </button>
+    <button class="quick-link-card" id="btn-doctors" (click)="navigateTo('/doctors-list')">
+      <strong>Our Doctors <em class="quick-link-arrow">→</em></strong>
+      <p>Browse available specialists</p>
+    </button>
+  </div>
+
+  <!-- Upcoming Appointments -->
+  <div class="section-block">
+    <h2 class="section-title">Upcoming Appointments</h2>
+    @if (loading()) {
+      <div class="loading-msg">Loading your appointments…</div>
+    } @else if (upcoming().length === 0) {
+      <div class="empty-state">
+        <p>No upcoming appointments. <a routerLink="/book-appointment" class="link">Book one now →</a></p>
+      </div>
+    } @else {
+      <div class="appt-list">
+        @for (appt of upcoming(); track appt.id) {
+          <div class="appt-card">
+            <div class="appt-info">
+              <div class="appt-doctor">Dr. {{ appt.doctorName }}</div>
+              <div class="appt-spec">{{ appt.doctorSpecialization }}</div>
+              <div class="appt-date">{{ formatDate(appt.appointmentDate) }}</div>
+            </div>
+            <span class="status-badge" [class]="getStatusClass(appt.status)">{{ appt.status }}</span>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- Recent History -->
+  @if (past().length > 0) {
+    <div class="section-block">
+      <h2 class="section-title">Recent History</h2>
+      <div class="appt-list muted">
+        @for (appt of past(); track appt.id) {
+          <div class="appt-card">
+            <div class="appt-info">
+              <div class="appt-doctor">Dr. {{ appt.doctorName }}</div>
+              <div class="appt-spec">{{ appt.doctorSpecialization }}</div>
+              <div class="appt-date">{{ formatDate(appt.appointmentDate) }}</div>
+            </div>
+            <span class="status-badge" [class]="getStatusClass(appt.status)">{{ appt.status }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+</div>

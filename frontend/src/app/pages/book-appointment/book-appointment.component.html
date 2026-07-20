@@ -1,0 +1,141 @@
+<div class="page book-page">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div>
+      <h1>Book an Appointment</h1>
+      <p>Follow the steps below to schedule your visit</p>
+    </div>
+  </div>
+
+  <!-- Step Indicator -->
+  <div class="steps-bar">
+    @for (s of [1,2,3,4]; track s) {
+      <div class="step-item" [class.active]="step() === s" [class.done]="step() > s" (click)="goToStep(s)">
+        <div class="step-circle">
+          @if (step() > s) { ✓ } @else { {{ s }} }
+        </div>
+        <span class="step-label">{{ ['Department','Doctor','Date & Time','Confirm'][s-1] }}</span>
+      </div>
+      @if (s < 4) { <div class="step-line" [class.done]="step() > s"></div> }
+    }
+  </div>
+
+  <!-- Error -->
+  @if (errorMsg()) {
+    <div class="error-banner">{{ errorMsg() }}</div>
+  }
+
+  <!-- STEP 1: Department -->
+  @if (step() === 1) {
+    <div class="step-panel">
+      <h2>Select a Department</h2>
+      <div class="dept-grid">
+        @for (dept of departments(); track dept.id) {
+          <button class="dept-card" [id]="'dept-' + dept.id" (click)="selectDepartment(dept)">
+            <span class="dept-name">{{ dept.name }}</span>
+            <span class="dept-code">{{ dept.code }}</span>
+          </button>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- STEP 2: Doctor -->
+  @if (step() === 2) {
+    <div class="step-panel">
+      <div class="step-breadcrumb">Department: <strong>{{ selectedDept?.name }}</strong></div>
+      <h2>Choose a Doctor</h2>
+      @if (doctors().length === 0) {
+        <div class="no-results">No available doctors in this department.</div>
+      }
+      <div class="doctor-grid">
+        @for (doc of doctors(); track doc.id) {
+          <button class="doctor-card" [id]="'doc-' + doc.id" (click)="selectDoctor(doc)">
+            <div class="doc-avatar">{{ doc.fullName[0] }}</div>
+            <div class="doc-info">
+              <div class="doc-name">Dr. {{ doc.fullName }}</div>
+              <div class="doc-spec">{{ doc.specialization }}</div>
+              <div class="doc-role">{{ doc.payrollPosition }}</div>
+            </div>
+            <span class="avail-dot">Available</span>
+          </button>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- STEP 3: Date & Time -->
+  @if (step() === 3) {
+    <div class="step-panel">
+      <div class="step-breadcrumb">Dr. <strong>{{ selectedDoc?.fullName }}</strong> · {{ selectedDept?.name }}</div>
+      <h2>Pick a Date & Time</h2>
+
+      <div class="date-section">
+        <label class="input-label">Select Date</label>
+        <input id="appt-date" type="date" class="date-input" [(ngModel)]="selectedDate" [min]="minDate" />
+      </div>
+
+      <div class="time-section">
+        <label class="input-label">Select Time Slot</label>
+        <div class="time-grid">
+          @for (slot of timeSlots; track slot) {
+            <button
+              class="time-slot"
+              [class.selected]="selectedTime === slot"
+              [id]="'slot-' + slot"
+              (click)="selectedTime = slot">
+              {{ formatTime(slot) }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <button id="btn-proceed-confirm" class="proceed-btn btn primary" (click)="proceedToConfirm()">Review & Confirm →</button>
+    </div>
+  }
+
+  <!-- STEP 4: Confirm -->
+  @if (step() === 4) {
+    <div class="step-panel">
+      <h2>Confirm Your Appointment</h2>
+      <div class="confirm-card">
+        <div class="confirm-row">
+          <span class="cr-label">Department</span>
+          <span class="cr-value">{{ selectedDept?.name }}</span>
+        </div>
+        <div class="confirm-row">
+          <span class="cr-label">Doctor</span>
+          <span class="cr-value">Dr. {{ selectedDoc?.fullName }} · {{ selectedDoc?.specialization }}</span>
+        </div>
+        <div class="confirm-row">
+          <span class="cr-label">Date</span>
+          <span class="cr-value">{{ formatDate(appointmentDateTime) }}</span>
+        </div>
+        <div class="confirm-row">
+          <span class="cr-label">Time</span>
+          <span class="cr-value">{{ formatTime(selectedTime) }}</span>
+        </div>
+      </div>
+      <div class="confirm-actions">
+        <button id="btn-back-date" class="btn secondary" (click)="goToStep(3)">← Edit</button>
+        <button id="btn-confirm-book" class="btn primary" (click)="confirm()" [disabled]="loading()">
+          @if (loading()) { <span class="spinner"></span> } Book Appointment
+        </button>
+      </div>
+    </div>
+  }
+
+  <!-- STEP 5: Success -->
+  @if (step() === 5) {
+    <div class="step-panel success-panel">
+      <h2>Appointment Booked</h2>
+      <p>Your appointment with <strong>Dr. {{ selectedDoc?.fullName }}</strong> on <strong>{{ formatDate(appointmentDateTime) }}</strong> at <strong>{{ formatTime(selectedTime) }}</strong> is confirmed.</p>
+      <div class="success-actions">
+        <a routerLink="/my-appointments" id="btn-view-appointments" class="btn primary">View My Appointments</a>
+        <a routerLink="/user-portal" id="btn-back-portal" class="btn secondary">Back to Dashboard</a>
+      </div>
+    </div>
+  }
+
+</div>

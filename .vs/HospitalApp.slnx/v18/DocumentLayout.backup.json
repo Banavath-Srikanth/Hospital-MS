@@ -1,0 +1,327 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\patients\\patients.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\app\\pages\\patients\\patients.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\patients\\patients.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\app\\pages\\patients\\patients.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\auth\\auth.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\app\\pages\\auth\\auth.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\appointments\\appointments.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\app\\pages\\appointments\\appointments.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\appointments\\appointments.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\app\\pages\\appointments\\appointments.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\backend\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\app.routes.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\app\\app.routes.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\backend\\Controllers\\PatientsController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\Controllers\\PatientsController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\backend\\appsettings.Development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\appsettings.Development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\dashboard\\dashboard.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\app\\pages\\dashboard\\dashboard.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\patients\\patients.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\app\\pages\\patients\\patients.scss||{181FE41B-5A5D-479F-9F8F-BF665F4EBC2A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\user-portal\\user-portal.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\app\\pages\\user-portal\\user-portal.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\auth\\auth.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\app\\pages\\auth\\auth.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\backend\\DTOs\\Patient\\PatientResponseDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\DTOs\\Patient\\PatientResponseDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\app.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\app\\app.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\backend\\Models\\AppUser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\Models\\AppUser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\environments\\environment.development.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:frontend\\src\\environments\\environment.development.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\backend\\DTOs\\Patient\\UpdatePatientDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:backend\\DTOs\\Patient\\UpdatePatientDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 10,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "app.ts",
+              "DocumentMoniker": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\app.ts",
+              "RelativeDocumentMoniker": "frontend\\src\\app\\app.ts",
+              "ToolTip": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\app.ts",
+              "RelativeToolTip": "frontend\\src\\app\\app.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-05-20T09:34:24.147Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "auth.html",
+              "DocumentMoniker": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\auth\\auth.html",
+              "RelativeDocumentMoniker": "frontend\\src\\app\\pages\\auth\\auth.html",
+              "ToolTip": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\auth\\auth.html",
+              "RelativeToolTip": "frontend\\src\\app\\pages\\auth\\auth.html",
+              "ViewState": "AgIAAIcAAAAAAAAAAAAAAC4AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-05-22T09:54:10.856Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "patients.ts",
+              "DocumentMoniker": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\patients\\patients.ts",
+              "RelativeDocumentMoniker": "frontend\\src\\app\\pages\\patients\\patients.ts",
+              "ToolTip": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\patients\\patients.ts",
+              "RelativeToolTip": "frontend\\src\\app\\pages\\patients\\patients.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-07-16T07:40:45.972Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "auth.ts",
+              "DocumentMoniker": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\auth\\auth.ts",
+              "RelativeDocumentMoniker": "frontend\\src\\app\\pages\\auth\\auth.ts",
+              "ToolTip": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\auth\\auth.ts",
+              "RelativeToolTip": "frontend\\src\\app\\pages\\auth\\auth.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-07-16T07:14:26.512Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appointments.ts",
+              "DocumentMoniker": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\appointments\\appointments.ts",
+              "RelativeDocumentMoniker": "frontend\\src\\app\\pages\\appointments\\appointments.ts",
+              "ToolTip": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\appointments\\appointments.ts",
+              "RelativeToolTip": "frontend\\src\\app\\pages\\appointments\\appointments.ts",
+              "ViewState": "AgIAALQAAAAAAAAAAAAowCMAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-07-15T05:57:29.49Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "app.routes.ts",
+              "DocumentMoniker": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\app.routes.ts",
+              "RelativeDocumentMoniker": "frontend\\src\\app\\app.routes.ts",
+              "ToolTip": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\app.routes.ts",
+              "RelativeToolTip": "frontend\\src\\app\\app.routes.ts",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABQAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-05-20T09:33:47.44Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\backend\\Program.cs",
+              "RelativeDocumentMoniker": "backend\\Program.cs",
+              "ToolTip": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\backend\\Program.cs",
+              "RelativeToolTip": "backend\\Program.cs",
+              "ViewState": "AgIAAMYAAAAAAAAAAAAAABsAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T09:33:42.427Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PatientsController.cs",
+              "DocumentMoniker": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\backend\\Controllers\\PatientsController.cs",
+              "RelativeDocumentMoniker": "backend\\Controllers\\PatientsController.cs",
+              "ToolTip": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\backend\\Controllers\\PatientsController.cs",
+              "RelativeToolTip": "backend\\Controllers\\PatientsController.cs",
+              "ViewState": "AgIAAHsAAAAAAAAAAAAAAIQAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-14T10:03:33.806Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\backend\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "backend\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\backend\\appsettings.Development.json",
+              "RelativeToolTip": "backend\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-07-14T07:03:17.077Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\backend\\appsettings.json",
+              "RelativeDocumentMoniker": "backend\\appsettings.json",
+              "ToolTip": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\backend\\appsettings.json",
+              "RelativeToolTip": "backend\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-07-14T07:03:07.245Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "patients.html",
+              "DocumentMoniker": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\patients\\patients.html",
+              "RelativeDocumentMoniker": "frontend\\src\\app\\pages\\patients\\patients.html",
+              "ToolTip": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\patients\\patients.html",
+              "RelativeToolTip": "frontend\\src\\app\\pages\\patients\\patients.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJAAAABWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-07-07T09:05:13.565Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "appointments.html",
+              "DocumentMoniker": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\appointments\\appointments.html",
+              "RelativeDocumentMoniker": "frontend\\src\\app\\pages\\appointments\\appointments.html",
+              "ToolTip": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\appointments\\appointments.html",
+              "RelativeToolTip": "frontend\\src\\app\\pages\\appointments\\appointments.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-07-15T05:57:26.832Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "dashboard.html",
+              "DocumentMoniker": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\dashboard\\dashboard.html",
+              "RelativeDocumentMoniker": "frontend\\src\\app\\pages\\dashboard\\dashboard.html",
+              "ToolTip": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\dashboard\\dashboard.html",
+              "RelativeToolTip": "frontend\\src\\app\\pages\\dashboard\\dashboard.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-07-13T05:06:53.963Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "patients.scss",
+              "DocumentMoniker": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\patients\\patients.scss",
+              "RelativeDocumentMoniker": "frontend\\src\\app\\pages\\patients\\patients.scss",
+              "ToolTip": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\patients\\patients.scss",
+              "RelativeToolTip": "frontend\\src\\app\\pages\\patients\\patients.scss",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGwAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002663|",
+              "WhenOpened": "2026-07-09T09:19:26.022Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "user-portal.ts",
+              "DocumentMoniker": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\user-portal\\user-portal.ts",
+              "RelativeDocumentMoniker": "frontend\\src\\app\\pages\\user-portal\\user-portal.ts",
+              "ToolTip": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\app\\pages\\user-portal\\user-portal.ts",
+              "RelativeToolTip": "frontend\\src\\app\\pages\\user-portal\\user-portal.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-07-07T06:52:40.856Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "environment.development.ts",
+              "DocumentMoniker": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\environments\\environment.development.ts",
+              "RelativeDocumentMoniker": "frontend\\src\\environments\\environment.development.ts",
+              "ToolTip": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\frontend\\src\\environments\\environment.development.ts",
+              "RelativeToolTip": "frontend\\src\\environments\\environment.development.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-07-02T06:45:46.86Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "AppUser.cs",
+              "DocumentMoniker": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\backend\\Models\\AppUser.cs",
+              "RelativeDocumentMoniker": "backend\\Models\\AppUser.cs",
+              "ToolTip": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\backend\\Models\\AppUser.cs",
+              "RelativeToolTip": "backend\\Models\\AppUser.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-29T11:14:46.632Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "UpdatePatientDto.cs",
+              "DocumentMoniker": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\backend\\DTOs\\Patient\\UpdatePatientDto.cs",
+              "RelativeDocumentMoniker": "backend\\DTOs\\Patient\\UpdatePatientDto.cs",
+              "ToolTip": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\backend\\DTOs\\Patient\\UpdatePatientDto.cs",
+              "RelativeToolTip": "backend\\DTOs\\Patient\\UpdatePatientDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T10:14:21.662Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "PatientResponseDto.cs",
+              "DocumentMoniker": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\backend\\DTOs\\Patient\\PatientResponseDto.cs",
+              "RelativeDocumentMoniker": "backend\\DTOs\\Patient\\PatientResponseDto.cs",
+              "ToolTip": "C:\\Users\\BanavathSrikanth\\Desktop\\HospitalApp\\backend\\DTOs\\Patient\\PatientResponseDto.cs",
+              "RelativeToolTip": "backend\\DTOs\\Patient\\PatientResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T10:14:20.975Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

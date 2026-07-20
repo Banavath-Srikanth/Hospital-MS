@@ -1,0 +1,189 @@
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1>Doctors / Employees</h1>
+      <p>{{ doctors.length }} record(s) from database</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn excel" (click)="exportToExcel()" id="btn-export-doctors" [disabled]="filtered.length === 0">
+        📊 Excel
+      </button>
+      <button class="btn pdf" (click)="exportToPdf()" id="btn-pdf-doctors" [disabled]="filtered.length === 0">
+        📄 PDF
+      </button>
+      <button class="btn print" (click)="printData()" id="btn-print-doctors" [disabled]="filtered.length === 0">
+        🖨 Print
+      </button>
+      <button class="btn primary" (click)="openAdd()" id="btn-add-doctor">+ Add Doctor</button>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="alert info">Loading doctors…</div>
+  <div *ngIf="error"   class="alert err">{{ error }}</div>
+  <div *ngIf="success" class="alert ok">{{ success }}</div>
+
+  <div class="card">
+    <!-- ── Toolbar ──────────────────────────────────────────────────── -->
+    <div class="table-toolbar">
+      <div class="toolbar-left">
+        <span class="record-count">{{ filtered.length }} doctor(s)</span>
+        <div class="filter-btn-group">
+          <button class="filter-btn" [class.active]="statusFilter === 'All'"         (click)="setStatusFilter('All')">All</button>
+          <button class="filter-btn" [class.active]="statusFilter === 'Available'"   (click)="setStatusFilter('Available')">Available</button>
+          <button class="filter-btn" [class.active]="statusFilter === 'Unavailable'" (click)="setStatusFilter('Unavailable')">Unavailable</button>
+        </div>
+      </div>
+      <button class="btn secondary sm" (click)="clearFilters()" id="btn-clear-filters">Clear Filters</button>
+    </div>
+
+    <!-- ── Global search bar ─────────────────────────────────────────── -->
+    <div class="global-search-wrap">
+      <span class="search-icon"></span>
+      <input
+        class="global-search"
+        type="text"
+        placeholder="Search by name, specialization, department, badge, phone…"
+        [(ngModel)]="globalSearch"
+        (ngModelChange)="applyFilter()"
+        id="df-global"
+        autocomplete="off"
+      />
+      <button *ngIf="globalSearch" class="search-clear" (click)="globalSearch=''; applyFilter()" title="Clear">x</button>
+    </div>
+
+    <div *ngIf="!loading && filtered.length === 0" class="empty">No doctors found.</div>
+
+    <!-- ── Kendo Grid ─────────────────────────────────────────────── -->
+    <kendo-grid
+      *ngIf="filtered.length > 0"
+      [data]="gridView"
+      [pageSize]="pageSize"
+      [skip]="skip"
+      [pageable]="pageableSettings"
+      [sortable]="true"
+      [sort]="sort"
+      [scrollable]="'none'"
+      (pageChange)="onPageChange($event)"
+      (sortChange)="onSortChange($event)"
+      [resizable]="true"
+      class="hospital-grid"
+      id="doctors-grid"
+    >
+      <kendo-grid-column field="badgeId" title="Badge ID" [width]="120">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <span class="badge-plain">{{ dataItem.badgeId }}</span>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="fullName" title="Full Name" [width]="180">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <strong>Dr. {{ dataItem.fullName }}</strong>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="specialization" title="Specialization" [width]="160"></kendo-grid-column>
+
+      <kendo-grid-column field="payrollPosition" title="Position" [width]="150">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          {{ dataItem.payrollPosition || '—' }}
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="departmentName" title="Department" [width]="150">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          {{ dataItem.departmentName || '—' }}
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="phoneNumber" title="Phone" [width]="130"></kendo-grid-column>
+
+      <kendo-grid-column field="email" title="Email" [width]="200"></kendo-grid-column>
+
+      <kendo-grid-column field="isAvailable" title="Status" [width]="120">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <span class="status-text" [ngClass]="dataItem.isAvailable ? 'status-available' : 'status-unavailable'">
+            {{ dataItem.isAvailable ? 'Available' : 'Unavailable' }}
+          </span>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="totalAppointments" title="Appts" [width]="80">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <span class="appt-count">{{ dataItem.totalAppointments }}</span>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column title="Actions" [width]="150" [sortable]="false">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <div class="btn-row">
+            <button class="btn secondary sm" (click)="openEdit(dataItem)">Edit</button>
+            <button class="btn danger sm"    (click)="delete(dataItem.id)">Remove</button>
+          </div>
+        </ng-template>
+      </kendo-grid-column>
+    </kendo-grid>
+  </div>
+</div>
+
+<!-- Add / Edit Modal -->
+<div class="overlay" *ngIf="showModal" (click)="showModal=false">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <div class="modal-head">
+      <h2>{{ editMode ? 'Edit Doctor' : 'Register Doctor' }}</h2>
+      <button (click)="showModal=false">×</button>
+    </div>
+    <div class="modal-body">
+      <div *ngIf="error" class="alert err" style="margin-bottom:8px">{{ error }}</div>
+      <div class="form-grid">
+        <div class="field full">
+          <label>Full Name</label>
+          <input type="text" [(ngModel)]="form.fullName" placeholder="e.g. Sarah Lee" id="d-fullname" />
+        </div>
+        <div class="field">
+          <label>Specialization</label>
+          <input type="text" [(ngModel)]="form.specialization" placeholder="e.g. Cardiology" id="d-spec" />
+        </div>
+        <div class="field">
+          <label>Payroll Position</label>
+          <input type="text" [(ngModel)]="form.payrollPosition" placeholder="e.g. Senior Consultant" id="d-position" />
+        </div>
+        <div class="field">
+          <label>Department <span class="req">*</span></label>
+          <select [(ngModel)]="form.departmentId" id="d-dept" (ngModelChange)="departmentError = ''">
+            <option [ngValue]="null">— Select Department —</option>
+            <option *ngFor="let dept of departments" [ngValue]="dept.id">{{ dept.name }}</option>
+          </select>
+          <span *ngIf="departmentError" class="field-error">{{ departmentError }}</span>
+        </div>
+        <div class="field">
+          <label>Phone Number</label>
+          <input type="tel" [(ngModel)]="form.phoneNumber" placeholder="e.g. 9001112222"
+                 id="d-phone" maxlength="10" pattern="[6-9][0-9]{9}"
+                 (input)="phoneError = ''" />
+          <span *ngIf="phoneError" class="field-error">{{ phoneError }}</span>
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" [(ngModel)]="form.email" placeholder="doctor@hospital.com"
+                 id="d-email" (input)="emailError = ''" />
+          <span *ngIf="emailError" class="field-error">{{ emailError }}</span>
+        </div>
+        <div class="field" *ngIf="editMode">
+          <label>Availability</label>
+          <select [(ngModel)]="form.isAvailable" id="d-available">
+            <option [ngValue]="true">Available</option>
+            <option [ngValue]="false">Unavailable</option>
+          </select>
+        </div>
+        <div class="field" *ngIf="editMode">
+          <label>Badge ID (auto-generated)</label>
+          <input type="text" [ngModel]="form.badgeId" disabled placeholder="Auto-generated" id="d-badge" />
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn secondary" (click)="showModal=false">Cancel</button>
+      <button class="btn primary" (click)="save()" id="btn-save-doctor">{{ editMode ? 'Update' : 'Register' }}</button>
+    </div>
+  </div>
+</div>

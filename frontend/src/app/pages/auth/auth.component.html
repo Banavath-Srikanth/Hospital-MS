@@ -1,0 +1,135 @@
+<div class="login-page">
+  <div class="login-card">
+
+    <!-- Brand -->
+    <div class="brand">
+      <span class="brand-icon"></span>
+      <h1>Hospital MS</h1>
+      <p>Your Health, Our Priority</p>
+    </div>
+
+    <!-- Tab switcher -->
+    <div class="tab-bar">
+      <button class="tab-btn" [class.active]="activeTab === 'login'" (click)="switchTab('login')" id="tab-login">Sign In</button>
+      <button class="tab-btn" [class.active]="activeTab === 'register'" (click)="switchTab('register')" id="tab-register">Register</button>
+    </div>
+
+    <!-- Error -->
+    @if (errorMsg()) {
+      <div class="error-msg" role="alert">{{ errorMsg() }}</div>
+    }
+
+    <!-- ══════════════════════════ LOGIN FORM ══════════════════════════ -->
+    @if (activeTab === 'login') {
+      <form (ngSubmit)="onLogin()" novalidate>
+
+        <div class="field" [class.has-error]="loginErrors['email']">
+          <label for="login-email">Email</label>
+          <input
+            id="login-email"
+            type="email"
+            placeholder="Enter your email"
+            [(ngModel)]="loginEmail"
+            name="loginEmail"
+            autocomplete="email" />
+          @if (loginErrors['email']) {
+            <span class="field-error">{{ loginErrors['email'] }}</span>
+          }
+        </div>
+
+        <div class="field" [class.has-error]="loginErrors['password']">
+          <label for="login-password">Password</label>
+          <div class="pw-wrap">
+            <input
+              id="login-password"
+              [type]="showPassword ? 'text' : 'password'"
+              placeholder="Enter your password"
+              [(ngModel)]="loginPassword"
+              name="loginPassword"
+              autocomplete="current-password" />
+            <button type="button" class="eye-btn" (click)="showPassword = !showPassword">
+              {{ showPassword ? 'Hide' : 'Show' }}
+            </button>
+          </div>
+          @if (loginErrors['password']) {
+            <span class="field-error">{{ loginErrors['password'] }}</span>
+          }
+        </div>
+
+        <button id="btn-login" type="submit" class="submit-btn" [disabled]="loading()">
+          @if (loading()) { <span class="spinner"></span> } Sign In
+        </button>
+
+      </form>
+
+      <p class="hint">Admin and staff access only via sign in.</p>
+      <p class="switch-hint">New patient? <a (click)="switchTab('register')" class="link-btn">Create an account →</a></p>
+    }
+
+    <!-- ══════════════════════════ REGISTER FORM ══════════════════════════ -->
+    @if (activeTab === 'register') {
+      <form (ngSubmit)="onRegister()" novalidate>
+
+        <div class="field" [class.has-error]="registerErrors['username']">
+          <label for="reg-name">Full Name</label>
+          <input id="reg-name" type="text" placeholder="Your full name" [(ngModel)]="regUsername" name="regUsername" autocomplete="name" />
+          @if (registerErrors['username']) { <span class="field-error">{{ registerErrors['username'] }}</span> }
+        </div>
+
+        <div class="field" [class.has-error]="registerErrors['email']">
+          <label for="reg-email">Email</label>
+          <input id="reg-email" type="email" placeholder="Your email address" [(ngModel)]="regEmail" name="regEmail" autocomplete="email" />
+          @if (registerErrors['email']) { <span class="field-error">{{ registerErrors['email'] }}</span> }
+        </div>
+
+        <div class="form-row">
+          <div class="field" [class.has-error]="registerErrors['age']">
+            <label for="reg-age">Age</label>
+            <input id="reg-age" type="number" placeholder="Age" [(ngModel)]="regAge" name="regAge" min="1" max="120" />
+            @if (registerErrors['age']) { <span class="field-error">{{ registerErrors['age'] }}</span> }
+          </div>
+
+          <div class="field" [class.has-error]="registerErrors['gender']">
+            <label for="reg-gender">Gender</label>
+            <select id="reg-gender" [(ngModel)]="regGender" name="regGender">
+              <option value="">Select</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+            @if (registerErrors['gender']) { <span class="field-error">{{ registerErrors['gender'] }}</span> }
+          </div>
+        </div>
+
+        <div class="field" [class.has-error]="registerErrors['phone']">
+          <label for="reg-phone">Phone Number</label>
+          <input id="reg-phone" type="tel" placeholder="e.g. 9876543210" [(ngModel)]="regPhone" name="regPhone" autocomplete="tel" />
+          @if (registerErrors['phone']) { <span class="field-error">{{ registerErrors['phone'] }}</span> }
+        </div>
+
+        <div class="field" [class.has-error]="registerErrors['password']">
+          <label for="reg-password">Password</label>
+          <div class="pw-wrap">
+            <input id="reg-password" [type]="showRegPassword ? 'text' : 'password'" placeholder="Minimum 8 characters" [(ngModel)]="regPassword" name="regPassword" autocomplete="new-password" />
+            <button type="button" class="eye-btn" (click)="showRegPassword = !showRegPassword">{{ showRegPassword ? 'Hide' : 'Show' }}</button>
+          </div>
+          @if (registerErrors['password']) { <span class="field-error">{{ registerErrors['password'] }}</span> }
+        </div>
+
+        <div class="field" [class.has-error]="registerErrors['confirmPassword']">
+          <label for="reg-confirm">Confirm Password</label>
+          <input id="reg-confirm" type="password" placeholder="Repeat your password" [(ngModel)]="regConfirmPassword" name="regConfirmPassword" autocomplete="new-password" />
+          @if (registerErrors['confirmPassword']) { <span class="field-error">{{ registerErrors['confirmPassword'] }}</span> }
+        </div>
+
+        <button id="btn-register" type="submit" class="submit-btn green" [disabled]="loading()">
+          @if (loading()) { <span class="spinner"></span> } Create Patient Account
+        </button>
+
+      </form>
+
+      <p class="switch-hint">Already registered? <a (click)="switchTab('login')" class="link-btn">Sign in →</a></p>
+    }
+
+  </div>
+</div>

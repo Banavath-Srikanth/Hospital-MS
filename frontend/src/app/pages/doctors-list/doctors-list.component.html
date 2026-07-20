@@ -1,0 +1,79 @@
+<div class="page doclist-page">
+
+  <!-- Header -->
+  <div class="page-header">
+    <div>
+      <h1>Our Doctors</h1>
+      <p>Find the right specialist for your needs</p>
+    </div>
+    <a routerLink="/book-appointment" id="btn-book-from-docs" class="btn primary">+ Book Appointment</a>
+  </div>
+
+  <!-- Search & Filters -->
+  <div class="filters-bar">
+    <input
+      id="search-doctors"
+      type="text"
+      class="search-input"
+      placeholder="Search by name or specialization…"
+      [value]="searchQuery()"
+      (input)="searchQuery.set($any($event.target).value)" />
+
+    <select id="filter-spec" class="spec-select" [value]="filterSpec()" (change)="filterSpec.set($any($event.target).value)">
+      <option value="">All Specializations</option>
+      @for (s of specializations(); track s) {
+        <option [value]="s">{{ s }}</option>
+      }
+    </select>
+
+    <div class="avail-filters">
+      <button class="avail-btn" [class.active]="filterAvail() === null" (click)="setAvailFilter(null)" id="filter-all-docs">All</button>
+      <button class="avail-btn green" [class.active]="filterAvail() === true" (click)="setAvailFilter(true)" id="filter-available">Available</button>
+      <button class="avail-btn grey" [class.active]="filterAvail() === false" (click)="setAvailFilter(false)" id="filter-unavailable">Unavailable</button>
+    </div>
+  </div>
+
+  <!-- Results Count -->
+  @if (!loading()) {
+    <p class="results-count">{{ filtered().length }} doctor{{ filtered().length !== 1 ? 's' : '' }} found</p>
+  }
+
+  <!-- Loading -->
+  @if (loading()) {
+    <div class="loading-state">
+      <div class="loader"></div>
+      <p>Loading doctors…</p>
+    </div>
+  } @else if (filtered().length === 0) {
+    <div class="empty-state">
+      <p>No doctors match your search.</p>
+    </div>
+  } @else {
+    <div class="doctors-grid">
+      @for (doc of filtered(); track doc.id) {
+        <div class="doc-card" [class.unavailable]="!doc.isAvailable">
+          <div class="doc-card-header">
+            <div class="doc-avatar">{{ doc.fullName[0] }}</div>
+            <span class="avail-badge" [class.avail]="doc.isAvailable" [class.unavail]="!doc.isAvailable">
+              {{ doc.isAvailable ? 'Available' : 'Unavailable' }}
+            </span>
+          </div>
+
+          <h3 class="doc-name">Dr. {{ doc.fullName }}</h3>
+          <div class="doc-spec">{{ doc.specialization }}</div>
+          <div class="doc-position">{{ doc.payrollPosition }}</div>
+
+          <div class="doc-contacts">
+            <div class="contact-row">{{ doc.phoneNumber }}</div>
+            <div class="contact-row">{{ doc.email }}</div>
+          </div>
+
+          @if (doc.isAvailable) {
+            <a routerLink="/book-appointment" [id]="'btn-book-doc-' + doc.id" class="book-with-doc btn primary">Book Appointment</a>
+          }
+        </div>
+      }
+    </div>
+  }
+
+</div>

@@ -1,0 +1,17 @@
+/* app.scss — scoped shell overrides (global styles live in styles.scss) */
+
+:host {
+  display: contents;
+}
+
+/* Role badge next to username in header */
+.user-role {
+  font-size: 10.5px;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  text-transform: capitalize;
+
+  &.badge-admin   { background: rgba(37, 99, 235, 0.15); color: #2563eb; }
+  &.badge-patient { background: rgba(16, 185, 129, 0.15); color: #059669; }
+  &.badge-staff   { background: rgba(245, 158, 11, 0.15); color: #d97706; }
+}
